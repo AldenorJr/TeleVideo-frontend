@@ -1,0 +1,30 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 25px;
+    font-family: Merriweather, serif;
+}
+
+html, body {
+    background: rgb(19, 19, 19);
+}
+
+a, li {
+    text-decoration: none;
+    transition: 0.2s opacity;
+    color: white;
+}
+
+p, li {
+    color: white;
+}
+
+li {
+    list-style-type: none;
+}
+
+a:hover, li:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

@@ -1,7 +1,7 @@
 <template>
     <header>
             <div class="home">
-                <a href="">
+                <a href="/">
                     <img src="@/assets/image.png" alt="img_home" id="logo">
                     <p>TELE VIDEO</p>
                 </a>

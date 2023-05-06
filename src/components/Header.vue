@@ -19,18 +19,19 @@
                         <li><p>TVs</p></li>
                         <li><p>Consertos</p></li>
                         <li><p>Produtos</p></li>
-                        <li v-if="menuActive">login/register</li>
+                        <li v-if="menuActive" v-on:click="perfilLoading"><a id="mobile-perfil">Área do usuário</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div class="perfil">
-                <p>login/register</p>
+            <div v-on:click="perfilLoading" class="perfil">
+                <a id="computer-perfil">Área do usuário</a>
             </div>
     </header>
 </template>
 
 <script>
+import api from "@/services/ServiceAutenticationAPI.js";
 export default {
     name: 'Header',
     data() {
@@ -44,7 +45,10 @@ export default {
         },
         closeMenu: function() {
             if(this.menuActive == true) this.menuActive = false;
-        }
+        },
+        perfilLoading: function() {
+            window.location.href = "/perfil";
+        },
     }
 }
 </script>
@@ -54,6 +58,7 @@ export default {
         display: none;
     }
     header {
+        padding: 0px 30px;
         width: 100%;
         height: 90px;
         background-color: #00155E;
@@ -76,15 +81,18 @@ export default {
     }
     .perfil {
         transition: 0.2s opacity;
+        transition: 0.2s background-color;
         color: white;
-        padding: 0px 50px;
+        background-color: #002dd0;
+        border-radius: 10px;
+        padding: 10px;
     }
     .perfil:hover {
         cursor: pointer;
         opacity: 0.8;
     }
     .home {
-        padding: 0px 30px;
+        padding: 10px;
     }
     .home a {
         display: flex;

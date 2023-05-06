@@ -33,28 +33,28 @@ export default {
     },
     methods: {
         sendLogin: function() {
+
             var email = document.getElementById('email_value').value;
             var password = document.getElementById('password_value').value;
+
             const login = JSON.stringify({
                 email: email,
                 password: password
             })
-            console.log(login  + " isso ai")
+
+            var self = this;
+
             apiAutentication.post('http://127.0.0.1:8080/user/login', login, { 
                 headers: { 
                     'Content-Type': 'application/json',
                 }, withCredentials: true
             })
             .then(function(response) {
-                if(response.status =! 202) {
-                    this.warning = true;
-                    return;
-                }
-                console.log(response.data);
-                localStorage.setItem('token', "Bearer "+response.data)
+                localStorage.setItem('token', response.data);
+                window.location.href = "/";
                 return;
-            }).catch(function(response) {
-                this.warning = true;
+            }).catch(function() {
+                self.warning = true;
                 return;
             });
         }
@@ -71,8 +71,7 @@ export default {
     }
     .warning p {
         font-size: 15px;
-        background-color: rgb(216, 83, 83);
-        color: rgb(0, 0, 0);
+        background-color: red;
         padding: 5px 20px;
         border-radius: 20px;
     }
@@ -106,14 +105,14 @@ export default {
         width: 40px;
     }
     .email input, .password input {
-        margin: 0px 5px;
+        margin: 0px 10px;
         padding: 5px 5px;
         width: 300px;
         height: 32px;
         border-radius: 8px;
         border: none;
         font-size: 20px;
-        text-align: left;
+        text-align: center;
     }
     input::placeholder {
         text-align: center;

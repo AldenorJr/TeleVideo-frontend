@@ -18,7 +18,7 @@
                         <li v-if="menuActive" v-on:click="closeMenu"> <img src="@/assets/close.png" alt=""></li>
                         <li><p>TVs</p></li>
                         <li><p>Consertos</p></li>
-                        <li><p>Produtos</p></li>
+                        <li v-on:click="produtosLoading"><p>Produtos</p></li>
                         <li v-if="menuActive" v-on:click="perfilLoading"><a id="mobile-perfil">Área do usuário</a></li>
                     </ul>
                 </div>
@@ -47,7 +47,20 @@ export default {
             if(this.menuActive == true) this.menuActive = false;
         },
         perfilLoading: function() {
-            window.location.href = "/perfil";
+            api.get('/user')
+            .then(function(){
+                window.location.href = "/perfil";
+            }).catch(function(){
+                 window.location.href = '/login';
+            }); 
+        },
+        produtosLoading: function() {
+            api.get('/user')
+            .then(function(){
+                window.location.href = "/produtos";
+            }).catch(function(){
+                 window.location.href = '/login';
+            }); 
         },
     }
 }
